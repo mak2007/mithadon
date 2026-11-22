@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Store Admin & Inventory | Mukesh Misthan Bhandar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="admin.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <!-- Admin Login Screen (PIN Protected) -->
+  <div class="admin-login-overlay" id="loginScreen">
+    <div class="admin-login-card">
+      <div class="login-brand-icon">
+        <i data-lucide="shield-check"></i>
+      </div>
+      <h2>Store Manager Login</h2>
+      <p>Mukesh Misthan Bhandar • Control Center</p>
+      
+      <form id="adminLoginForm" onsubmit="return handleAdminLogin(event)">
+        <div class="pin-input-group">
+          <label for="adminPin">Enter 4-Digit Owner PIN:</label>
+          <input type="password" id="adminPin" maxlength="6" placeholder="••••" required autofocus>
+          <span class="pin-hint">Default PIN: <strong>2014</strong> (Year Estd)</span>
+        </div>
+        <div id="loginError" class="login-error-msg" style="display: none;">
+          Incorrect PIN. Please try again.
+        </div>
+        <button type="submit" class="btn-login-submit">
+          <span>Unlock Dashboard</span>
+          <i data-lucide="arrow-right"></i>
+        </button>
+      </form>
+      <a href="index.html" class="back-to-store-link">&larr; Back to Public Website</a>
+    </div>
+  </div>
+
+  <!-- Main Admin Dashboard -->
+  <div class="admin-dashboard-wrap" id="dashboardScreen" style="display: none;">
+    
+    <!-- Top Admin Bar -->
+    <header class="admin-topbar">
+      <div class="topbar-inner">
+        <div class="admin-brand">
+          <div class="brand-badge-mini">MMB</div>
+          <div>
+            <h1>Mukesh Misthan Bhandar</h1>
+            <span class="admin-role-badge">Owner Admin Panel</span>
+          </div>
+        </div>
+
+        <div class="topbar-actions">
+          <a href="index.html" target="_blank" class="action-btn view-live-btn" title="Open customer website">
+            <i data-lucide="external-link"></i>
+            <span>View Live Website</span>
+          </a>
+          <button class="action-btn logout-btn" onclick="handleLogout()" title="Lock panel">
+            <i data-lucide="log-out"></i>
+            <span>Lock</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav class="admin-nav-tabs">
+      <div class="tabs-container">
+        <button class="admin-tab active" data-tab="analytics" onclick="switchTab('analytics')">
+          <i data-lucide="bar-chart-3"></i>
+          <span>Visitors & Sales</span>
+        </button>
+        <button class="admin-tab" data-tab="inventory" onclick="switchTab('inventory')">
+          <i data-lucide="boxes"></i>
+          <span>Stock & Prices</span>
+          <span class="tab-badge" id="stockCountBadge">20</span>
+        </button>
+        <button class="admin-tab" data-tab="orders" onclick="switchTab('orders')">
+          <i data-lucide="shopping-bag"></i>
+          <span>Recent Orders</span>
+          <span class="tab-badge alert" id="ordersCountBadge">0</span>
+        </button>
+        <button class="admin-tab" data-tab="settings" onclick="switchTab('settings')">
+          <i data-lucide="settings"></i>
+          <span>Store Settings</span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Main Tab Contents -->
+    <main class="admin-main-body">
+
+      <!-- ================= TAB 1: ANALYTICS & VISITORS ================= -->
+      <section class="tab-pane active" id="pane-analytics">
+        <div class="dashboard-header-row">
+          <div>
+            <h2>Store Activity & Traffic</h2>
+            <p>Real-time customer engagement and website visitor metrics.</p>
+          </div>
+          <div class="date-pill" id="todayDatePill">Today: Nov 23, 2026</div>
+        </div>
+
+        <!-- Metric Stat Cards -->
+        <div class="metrics-cards-grid">
+          <div class="metric-card">
+            <div class="mc-icon users-bg"><i data-lucide="users"></i></div>
+            <div class="mc-details">
+              <span class="mc-label">Visitors Today</span>
+              <span class="mc-value" id="statTodayVisitors">0</span>
+              <span class="mc-sub" id="statTotalVisitors">Total visits: 0</span>
+            </div>
+          </div>
+
+          <div class="metric-card">
+            <div class="mc-icon wa-bg"><i data-lucide="message-circle"></i></div>
+            <div class="mc-details">
+              <span class="mc-label">WhatsApp Order Clicks</span>
+              <span class="mc-value" id="statWaClicks">0</span>
+              <span class="mc-sub">Customers initiated order</span>
+            </div>
+          </div>
+
+          <div class="metric-card">
+            <div class="mc-icon phone-bg"><i data-lucide="phone-call"></i></div>
+            <div class="mc-details">
+              <span class="mc-label">Phone Calls to Outlet</span>
+              <span class="mc-value" id="statPhoneCalls">0</span>
+              <span class="mc-sub">Tapped to call store</span>
+            </div>
+          </div>
+
+          <div class="metric-card">
+            <div class="mc-icon sales-bg"><i data-lucide="indian-rupee"></i></div>
+            <div class="mc-details">
+              <span class="mc-label">Online Orders Value</span>
+              <span class="mc-value" id="statTotalSales">₹0</span>
+              <span class="mc-sub" id="statOrdersCount">0 total orders placed</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Popular Sweets Viewed & Quick Insights -->
+        <div class="analytics-split-grid">
+          <div class="admin-card">
+            <div class="card-title-row">
+              <h3><i data-lucide="trending-up"></i> Top Viewed Sweets by Visitors</h3>
+              <span class="badge-tag">Customer Demand</span>
+            </div>
+            <div class="popular-sweets-list" id="popularSweetsList">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+
+          <div class="admin-card">
+            <div class="card-title-row">
+              <h3><i data-lucide="sparkles"></i> Store Quick Controls</h3>
+            </div>
+            <div class="quick-toggles-list">
+              <div class="quick-toggle-item">
+                <div>
+                  <strong>Accepting Online Orders</strong>
+                  <p>When turned off, customers are asked to call directly.</p>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="storeStatusToggle" checked onchange="toggleStoreOpen(this.checked)">
+                  <span class="slider"></span>
+                </label>
+              </div>
+
+              <div class="quick-toggle-item">
+                <div>
+                  <strong>Festival Surge Offer (10% OFF)</strong>
+                  <p>Banner promotes code: MITHAI10 on homepage.</p>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="festivePromoToggle" checked onchange="togglePromoBanner(this.checked)">
+                  <span class="slider"></span>
+                </label>
+              </div>
+
+              <div class="quick-toggle-item">
+                <div>
+                  <strong>Free Delivery Perk Threshold</strong>
+                  <p>Current: Orders above ₹499 get free delivery.</p>
+                </div>
+                <button class="btn-sm-action" onclick="switchTab('settings')">Configure</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= TAB 2: INVENTORY & STOCK MANAGER ================= -->
+      <section class="tab-pane" id="pane-inventory">
+        <div class="dashboard-header-row">
+          <div>
+            <h2>Inventory & Live Menu Prices</h2>
+            <p>One-tap toggle to mark sweets "In Stock" or "Sold Out", or edit prices.</p>
+          </div>
+          <button class="btn-primary-action" onclick="openAddSweetModal()">
+            <i data-lucide="plus-circle"></i>
+            <span>Add New Item / Daily Special</span>
+          </button>
+        </div>
+
+        <!-- Inventory Filter & Search Bar -->
+        <div class="inventory-controls-bar">
+          <div class="search-input-wrap">
+            <i data-lucide="search"></i>
+            <input type="text" id="invSearchInput" placeholder="Filter sweets by name..." oninput="filterInventory()">
+          </div>
+          <div class="cat-filter-select-wrap">
+            <select id="invCatFilter" onchange="filterInventory()">
+              <option value="all">All Categories</option>
+              <option value="desi-ghee">Desi Ghee Sweets</option>
+              <option value="kaju-dryfruit">Kaju & Dry Fruit</option>
+              <option value="milk-khoya">Milk & Khoya</option>
+              <option value="snacks">Samosa & Snacks</option>
+              <option value="bengali">Bengali Sweets</option>
+              <option value="hampers">Gift Hampers</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Inventory Table / Cards -->
+        <div class="inventory-table-container">
+          <table class="inventory-table">
+            <thead>
+              <tr>
+                <th>Sweet / Delicacy</th>
+                <th>Category</th>
+                <th>Live Prices (250g / 500g / 1kg)</th>
+                <th>Stock Availability</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="inventoryTableBody">
+              <!-- Rendered dynamically -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ================= TAB 3: RECENT ORDERS ================= -->
+      <section class="tab-pane" id="pane-orders">
+        <div class="dashboard-header-row">
+          <div>
+            <h2>Customer Orders & Inquiries</h2>
+            <p>Orders received via Website & WhatsApp dispatch.</p>
+          </div>
+          <button class="btn-outline-action" onclick="exportOrdersCSV()">
+            <i data-lucide="download"></i>
+            <span>Export to Excel / CSV</span>
+          </button>
+        </div>
+
+        <div class="orders-table-wrap">
+          <table class="inventory-table">
+            <thead>
+              <tr>
+                <th>Order #</th>
+                <th>Customer</th>
+                <th>Phone</th>
+                <th>Items Ordered</th>
+                <th>Total</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="ordersTableBody">
+              <!-- Rendered via JS -->
+            </tbody>
+          </table>
+          <div class="no-orders-state" id="noOrdersState" style="display: none;">
+            <i data-lucide="package-open"></i>
+            <p>No new orders yet today. Orders placed by customers will appear here in real-time!</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= TAB 4: SETTINGS ================= -->
+      <section class="tab-pane" id="pane-settings">
+        <div class="dashboard-header-row">
+          <div>
+            <h2>Store Operational Settings</h2>
+            <p>Configure phone numbers, delivery fees, and custom announcement messages.</p>
+          </div>
+        </div>
+
+        <div class="settings-form-card">
+          <form id="settingsForm" onsubmit="return saveStoreSettings(event)">
+            <div class="settings-form-grid">
+              <div class="form-group">
+                <label>Store WhatsApp Phone Number (with Country Code):</label>
+                <input type="text" id="cfgWaPhone" value="919811234567" required placeholder="e.g. 919811234567">
+                <small>Customers will send their order directly to this WhatsApp number.</small>
+              </div>
+
+              <div class="form-group">
+                <label>Outlet Call Phone Number:</label>
+                <input type="text" id="cfgCallPhone" value="+91 98112 34567" required>
+              </div>
+
+              <div class="form-group">
+                <label>Free Delivery Minimum Amount (₹):</label>
+                <input type="number" id="cfgFreeDelivery" value="499" required>
+                <small>Orders above this get free local delivery.</small>
+              </div>
+
+              <div class="form-group">
+                <label>Standard Delivery Fee (₹):</label>
+                <input type="number" id="cfgDeliveryFee" value="50" required>
+              </div>
+
+              <div class="form-group full-width">
+                <label>Live Top Announcement Ticker Message:</label>
+                <input type="text" id="cfgAnnouncement" value="✨ Festive Special: 10% OFF with code MITHAI10 | Free Delivery over ₹499!" required>
+              </div>
+
+              <div class="form-group">
+                <label>Change 4-Digit Owner PIN:</label>
+                <input type="password" id="cfgNewPin" maxlength="6" placeholder="Leave blank to keep 2014">
+              </div>
+            </div>
+
+            <button type="submit" class="btn-primary-action mt-16">
+              <i data-lucide="check"></i>
+              <span>Save & Apply Settings to Live Website</span>
+            </button>
+          </form>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Edit Price Modal -->
+  <div class="admin-modal-overlay" id="editPriceModal">
+    <div class="admin-modal-box">
+      <div class="admin-modal-header">
+        <h3 id="modalSweetName">Edit Price: Kaju Katli</h3>
+        <button class="modal-close" onclick="closePriceModal()"><i data-lucide="x"></i></button>
+      </div>
+      <div class="admin-modal-body">
+        <input type="hidden" id="editSweetId">
+        <div id="pricePortionsInputs">
+          <!-- Dynamic portion inputs -->
+        </div>
+        <div class="modal-actions-row">
+          <button class="btn-primary-action w-full" onclick="saveEditedPrices()">
+            <i data-lucide="save"></i> Save New Prices
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add New Sweet Modal -->
+  <div class="admin-modal-overlay" id="addSweetModal">
+    <div class="admin-modal-box">
+      <div class="admin-modal-header">
+        <h3>Add New Sweet / Today's Special</h3>
+        <button class="modal-close" onclick="closeAddSweetModal()"><i data-lucide="x"></i></button>
+      </div>
+      <div class="admin-modal-body">
+        <form id="addNewSweetForm" onsubmit="return handleAddNewSweet(event)">
+          <div class="form-group">
+            <label>Sweet / Item Name *</label>
+            <input type="text" id="newSweetName" required placeholder="e.g. Special Kesar Peda">
+          </div>
+          <div class="form-group">
+            <label>Category *</label>
+            <select id="newSweetCat" required>
+              <option value="desi-ghee">Pure Desi Ghee</option>
+              <option value="kaju-dryfruit">Royal Kaju & Dry Fruit</option>
+              <option value="milk-khoya">Khoya & Milk Delights</option>
+              <option value="snacks">Samosa & Snacks</option>
+              <option value="bengali">Bengali Ras Mithai</option>
+              <option value="hampers">Gift Hampers</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Photo URL (Optional)</label>
+            <input type="url" id="newSweetImg" placeholder="https://images.unsplash.com/...">
+          </div>
+          <div class="form-group">
+            <label>Price for 250g (₹) *</label>
+            <input type="number" id="newSweetP250" required placeholder="140">
+          </div>
+          <div class="form-group">
+            <label>Price for 500g (₹) *</label>
+            <input type="number" id="newSweetP500" required placeholder="270">
+          </div>
+          <div class="form-group">
+            <label>Price for 1kg (₹) *</label>
+            <input type="number" id="newSweetP1000" required placeholder="520">
+          </div>
+          <button type="submit" class="btn-primary-action w-full mt-16">
+            <i data-lucide="plus"></i> Add Item to Live Menu
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="admin-toast-box" id="adminToast"></div>
+
+  <script src="admin.js"></script>
+</body>
+</html>

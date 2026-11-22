@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Mukesh Misthan Bhandar | Authentic Sweets & Snacks Since 2014</title>
+  <meta name="description" content="Order authentic Indian sweets, pure desi ghee mithai, hot samosas, bedai kachori, and custom festive gift boxes online with express 30-min delivery.">
+  <meta name="theme-color" content="#EA580C">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <!-- Top App Bar (Mobile Sticky) -->
+  <header class="app-header">
+    <div class="top-meta-bar">
+      <div class="container meta-bar-inner">
+        <div class="delivery-location">
+          <div class="loc-pulse"></div>
+          <span class="delivery-bolt">⚡ <strong>Express 25-30 Mins</strong></span>
+          <span class="loc-divider">|</span>
+          <span class="loc-name">Sector 16 Market, Faridabad</span>
+          <i data-lucide="chevron-down" class="chevron-sm"></i>
+        </div>
+        <div class="outlet-call-shortcut">
+          <a href="admin.html" class="admin-pill-link" style="color: #EA580C; font-size: 0.72rem; margin-right: 12px; font-weight: 700; display: inline-flex; align-items: center; gap: 4px;"><i data-lucide="lock" style="width: 12px; height: 12px;"></i> Admin</a>
+          <a href="tel:+919811234567"><i data-lucide="phone-call"></i> +91 98112 34567</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Navigation Bar -->
+    <div class="main-bar">
+      <div class="container main-bar-inner">
+        <a href="#" class="brand-badge">
+          <div class="brand-emblem">
+            <svg viewBox="0 0 100 100" class="kalash-icon">
+              <path d="M50 15 C45 25, 30 35, 30 50 C30 65, 40 75, 50 82 C60 75, 70 65, 70 50 C70 35, 55 25, 50 15 Z" fill="#D4AF37"/>
+              <path d="M40 82 L60 82 L58 92 L42 92 Z" fill="#F57C00"/>
+              <circle cx="50" cy="22" r="5" fill="#E65100"/>
+              <circle cx="50" cy="50" r="12" fill="#880E4F"/>
+              <path d="M46 50 L50 42 L54 50 L50 58 Z" fill="#D4AF37"/>
+            </svg>
+          </div>
+          <div class="brand-text">
+            <span class="brand-name">MUKESH</span>
+            <span class="brand-sub">MISTHAN BHANDAR</span>
+            <span class="brand-tag">PURE DESI GHEE • ESTD 2014</span>
+          </div>
+        </a>
+
+        <!-- Desktop Links -->
+        <nav class="desktop-nav">
+          <a href="#menu" class="d-link active">Menu</a>
+          <a href="#hamper-builder" class="d-link">🎁 Custom Hamper</a>
+          <a href="#heritage" class="d-link">Our Heritage</a>
+          <a href="#outlets" class="d-link">Outlets</a>
+          <a href="#catering" class="d-link">Bulk Orders</a>
+        </nav>
+
+        <!-- Header Actions -->
+        <div class="header-right-actions">
+          <button class="cart-trigger-btn" id="openCartBtn" aria-label="Shopping Cart">
+            <div class="cart-icon-container">
+              <i data-lucide="shopping-bag"></i>
+              <span class="cart-badge-count" id="headerCartCount">0</span>
+            </div>
+            <div class="cart-amount-text" id="headerCartTotal">₹0</div>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sticky App Search Bar -->
+    <div class="search-bar-strip">
+      <div class="container">
+        <div class="search-input-pill">
+          <i data-lucide="search" class="search-icon"></i>
+          <input type="text" id="menuSearchInput" placeholder="Search 'Kaju Katli', 'Samosa', 'Ladoo', 'Ghee'..." autocomplete="off">
+          <button id="clearSearchBtn" class="clear-btn" style="display: none;"><i data-lucide="x"></i></button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="app-main-content">
+    
+    <!-- Mobile Story Categories (App Style Horizontal Circle Bar) -->
+    <section class="story-categories-section">
+      <div class="container">
+        <div class="story-scroll-track" id="storyCategoryTrack">
+          <button class="story-cat-item active" data-cat="all">
+            <div class="story-avatar all-avatar">
+              <span>✨</span>
+            </div>
+            <span class="story-label">All Items</span>
+          </button>
+
+          <button class="story-cat-item" data-cat="desi-ghee">
+            <div class="story-avatar">
+              <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=200&auto=format&fit=crop&q=80" alt="Pure Desi Ghee Ladoo">
+            </div>
+            <span class="story-label">Desi Ghee</span>
+          </button>
+
+          <button class="story-cat-item" data-cat="kaju-dryfruit">
+            <div class="story-avatar">
+              <img src="https://images.unsplash.com/photo-1695568181044-afbbeaf4298d?w=200&auto=format&fit=crop&q=80" alt="Kaju Katli">
+            </div>
+            <span class="story-label">Kaju Katli</span>
+          </button>
+
+          <button class="story-cat-item" data-cat="milk-khoya">
+            <div class="story-avatar">
+              <img src="https://images.unsplash.com/photo-1599488615731-7e5c2823ff28?w=200&auto=format&fit=crop&q=80" alt="Gulab Jamun">
+            </div>
+            <span class="story-label">Gulab Jamun</span>
+          </button>
+
+          <button class="story-cat-item" data-cat="snacks">
+            <div class="story-avatar">
+              <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?w=200&auto=format&fit=crop&q=80" alt="Hot Samosa">
+            </div>
+            <span class="story-label">Hot Samosa</span>
+          </button>
+
+          <button class="story-cat-item" data-cat="bengali">
+            <div class="story-avatar">
+              <img src="https://images.unsplash.com/photo-1714799263412-2e0c1f875959?w=200&auto=format&fit=crop&q=80" alt="Rasgulla">
+            </div>
+            <span class="story-label">Rasgulla</span>
+          </button>
+
+          <button class="story-cat-item" data-cat="hampers">
+            <div class="story-avatar gift-avatar">
+              <span>🎁</span>
+            </div>
+            <span class="story-label">Gift Boxes</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Compact Mobile Promotional Banner -->
+    <section class="promo-banner-section">
+      <div class="container">
+        <div class="app-promo-card">
+          <div class="promo-content">
+            <span class="promo-badge">🔥 FRESH BATCH READY</span>
+            <h2 class="promo-title">Garma Garam Desi Ghee Samosa & Jalebi</h2>
+            <p class="promo-sub">Use code <strong class="code-tag">MITHAI10</strong> for 10% OFF on all sweets</p>
+          </div>
+          <a href="#menu" class="promo-action-btn">Order Now &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dietary Filter Chips -->
+    <div class="filter-chips-container">
+      <div class="container">
+        <div class="filter-chips-track">
+          <button class="chip-filter active" data-filter="all">All Specials</button>
+          <button class="chip-filter" data-filter="bestseller"><i data-lucide="flame"></i> Bestseller</button>
+          <button class="chip-filter" data-filter="ghee"><i data-lucide="sparkles"></i> 100% Desi Ghee</button>
+          <button class="chip-filter" data-filter="sugarfree"><i data-lucide="heart-pulse"></i> Sugar-Free</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Products Grid (Mobile 2-Col App Style) -->
+    <section class="products-section" id="menu">
+      <div class="container">
+        <div class="section-title-row">
+          <div>
+            <h2 class="category-heading" id="currentCategoryHeading">All Sweets & Snacks</h2>
+            <span class="items-count-label" id="itemsCountLabel">Showing 20 fresh confections</span>
+          </div>
+        </div>
+
+        <div class="food-grid-2col" id="foodGrid">
+          <!-- Populated dynamically via app.js -->
+        </div>
+
+        <!-- No Results Fallback -->
+        <div class="no-results-card" id="noResultsCard" style="display: none;">
+          <i data-lucide="search-x"></i>
+          <h3>No delicacies found</h3>
+          <p>Try searching for "Kaju", "Samosa", or clear your filter.</p>
+          <button class="btn-pill" id="resetFiltersBtn">Reset Search</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Hamper Customizer (Mobile Optimized) -->
+    <section class="hamper-section" id="hamper-builder">
+      <div class="container">
+        <div class="mobile-hamper-card">
+          <div class="hamper-card-header">
+            <span class="pill-badge gold">🎁 FESTIVE & WEDDING SPECIAL</span>
+            <h2 class="h-title">Design Your Custom Mithai Box</h2>
+            <p class="h-sub">Choose your box size, pick your favorite sweets, and add a personalized greeting card.</p>
+          </div>
+
+          <!-- Step 1: Box Size -->
+          <div class="hamper-sub-step">
+            <label class="step-label">1. Select Box Packaging:</label>
+            <div class="box-pill-selector">
+              <label class="box-pill-option active">
+                <input type="radio" name="boxType" value="shahi-4" checked>
+                <div class="box-pill-content">
+                  <strong>Shahi 4-Partition</strong>
+                  <span>~1kg Capacity (+₹150)</span>
+                </div>
+              </label>
+
+              <label class="box-pill-option">
+                <input type="radio" name="boxType" value="royal-6">
+                <div class="box-pill-content">
+                  <strong>Royal 6-Partition</strong>
+                  <span>~1.5kg Velvet (+₹250)</span>
+                </div>
+              </label>
+
+              <label class="box-pill-option">
+                <input type="radio" name="boxType" value="utsav-2">
+                <div class="box-pill-content">
+                  <strong>Utsav 2-Partition</strong>
+                  <span>~500g Duo (+₹90)</span>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <!-- Step 2: Visual Slots Preview & Picker -->
+          <div class="hamper-sub-step">
+            <label class="step-label">2. Tap to Pick Sweets for Compartments:</label>
+            <div class="mobile-slots-grid" id="mobileSlotsGrid">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+
+          <!-- Step 3: Greeting Card -->
+          <div class="hamper-sub-step">
+            <label class="step-label">3. Personal Greeting (Optional):</label>
+            <input type="text" id="hamperRecipient" class="app-input" placeholder="Recipient's Name (e.g. Sharma Family)">
+            <textarea id="hamperMsg" class="app-input mt-8" rows="2" placeholder="Heartfelt festive message..."></textarea>
+          </div>
+
+          <!-- Box Total & Add to Cart -->
+          <div class="hamper-summary-bar">
+            <div>
+              <span class="hamper-price-label">Custom Hamper Price:</span>
+              <div class="hamper-total-amount" id="hamperTotalAmount">₹650</div>
+            </div>
+            <button class="btn-primary-app" id="addHamperBtn">
+              <i data-lucide="plus-circle"></i> Add Hamper to Box
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Outlets & Live Status -->
+    <section class="outlets-section" id="outlets">
+      <div class="container">
+        <h2 class="section-heading-center">Our Retail Outlets</h2>
+        <div class="outlets-scroll-cards">
+          <!-- Outlet 1 -->
+          <div class="outlet-card featured">
+            <div class="outlet-status open"><span class="dot"></span> Open Today till 10:30 PM</div>
+            <h3 class="outlet-title">Sector 16 Market (Flagship)</h3>
+            <p class="outlet-address"><i data-lucide="map-pin"></i> Shop No. 42-43, Main Central Market, Sector 16, Faridabad</p>
+            <div class="outlet-actions">
+              <a href="https://maps.google.com/?q=Mukesh+Misthan+Bhandar+Sector+16+Faridabad" target="_blank" class="outlet-btn"><i data-lucide="navigation"></i> Directions</a>
+              <a href="tel:+919811234567" class="outlet-btn call"><i data-lucide="phone"></i> Call Store</a>
+            </div>
+          </div>
+
+          <!-- Outlet 2 -->
+          <div class="outlet-card">
+            <div class="outlet-status open"><span class="dot"></span> Open Today till 10:30 PM</div>
+            <h3 class="outlet-title">Sector 78 (Express Outlet)</h3>
+            <p class="outlet-address"><i data-lucide="map-pin"></i> Near BPTP Park Elite Floors, Sector 78, Faridabad</p>
+            <div class="outlet-actions">
+              <a href="https://maps.google.com/?q=Mukesh+Misthan+Bhandar+Sector+78+Faridabad" target="_blank" class="outlet-btn"><i data-lucide="navigation"></i> Directions</a>
+              <a href="tel:+919811234568" class="outlet-btn call"><i data-lucide="phone"></i> Call Store</a>
+            </div>
+          </div>
+
+          <!-- Outlet 3 -->
+          <div class="outlet-card">
+            <div class="outlet-status open"><span class="dot"></span> Open Today till 10:00 PM</div>
+            <h3 class="outlet-title">Tigaon Heritage Sweet Center</h3>
+            <p class="outlet-address"><i data-lucide="map-pin"></i> Main Bazaar, Near Sabji Mandi, Tigaon, Faridabad</p>
+            <div class="outlet-actions">
+              <a href="https://maps.google.com/?q=Mukesh+Misthan+Bhandar+Tigaon+Faridabad" target="_blank" class="outlet-btn"><i data-lucide="navigation"></i> Directions</a>
+              <a href="tel:+919811234569" class="outlet-btn call"><i data-lucide="phone"></i> Call Store</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Heritage & Quality Promise -->
+    <section class="heritage-section-app" id="heritage">
+      <div class="container">
+        <div class="heritage-card-compact">
+          <span class="pill-badge gold">ESTABLISHED 2014</span>
+          <h3>A Decade of Pure Craftsmanship & Tradition (Since 2014)</h3>
+          <p>Every morning, our master artisans craft sweets using 100% pure Bilona Desi Cow Ghee and fresh farm buffalo milk in heavy copper vessels. Zero artificial essences, zero compromise.</p>
+          <div class="quality-badges-row">
+            <div class="q-badge"><i data-lucide="shield-check"></i> FSSAI Certified</div>
+            <div class="q-badge"><i data-lucide="leaf"></i> 100% Pure Veg</div>
+            <div class="q-badge"><i data-lucide="sparkles"></i> Pure Desi Ghee</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bulk Catering Inquiry -->
+    <section class="catering-section-app" id="catering">
+      <div class="container">
+        <div class="catering-compact-card">
+          <h3>🎉 Wedding & Bulk Corporate Orders</h3>
+          <p>Planning an event? Get fresh sweets and custom gold-embossed boxes delivered to your venue at special bulk prices.</p>
+          <a href="https://wa.me/919811234567?text=Hello%20Mukesh%20Misthan%20Bhandar,%20I%20would%20like%20to%20inquire%20about%20a%20bulk%20order/wedding%20sweets!" target="_blank" class="btn-whatsapp-large">
+            <i data-lucide="message-circle"></i> Chat on WhatsApp for Bulk Rates
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- App Footer -->
+    <footer class="app-footer">
+      <div class="container">
+        <div class="footer-center-content">
+          <h4>MUKESH MISTHAN BHANDAR</h4>
+          <p>Crafted with devotion & shuddh desi ghee since 2014.</p>
+          <div class="footer-links-row">
+            <a href="#menu">Menu</a>
+            <span>•</span>
+            <a href="#hamper-builder">Custom Hamper</a>
+            <span>•</span>
+            <a href="#outlets">Outlets</a>
+            <span>•</span>
+            <a href="tel:+919811234567">Contact</a>
+            <span>•</span>
+            <a href="admin.html" style="color:#D4AF37; font-weight:800;">🔐 Store Admin</a>
+          </div>
+          <small class="fssai-text">FSSAI Lic. No: 10818005000214 | &copy; 2014 - 2026</small>
+        </div>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- Floating Mobile Cart Bar (Zomato / Swiggy Style) -->
+  <div class="floating-cart-bar" id="floatingCartBar" style="display: none;">
+    <div class="cart-pill-inner">
+      <div class="cart-pill-left">
+        <span class="cart-item-count" id="floatCartCount">1 Item</span>
+        <span class="cart-item-subtotal" id="floatCartTotal">₹240</span>
+      </div>
+      <button class="cart-pill-right" id="viewCartTriggerBtn">
+        <span>View Mithai Box</span>
+        <i data-lucide="arrow-right"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Bottom App Navigation (Phone Friendly) -->
+  <nav class="bottom-app-nav">
+    <a href="#menu" class="nav-app-item active">
+      <i data-lucide="utensils"></i>
+      <span>Menu</span>
+    </a>
+    <a href="#hamper-builder" class="nav-app-item">
+      <i data-lucide="gift"></i>
+      <span>Hamper</span>
+    </a>
+    <a href="#outlets" class="nav-app-item">
+      <i data-lucide="map-pin"></i>
+      <span>Outlets</span>
+    </a>
+    <a href="https://wa.me/919811234567?text=Hello%20Mukesh%20Misthan%20Bhandar,%20I%20would%20like%20to%20order!" target="_blank" class="nav-app-item wa-item">
+      <i data-lucide="message-circle"></i>
+      <span>WhatsApp</span>
+    </a>
+    <button class="nav-app-item cart-item" id="bottomNavCartBtn">
+      <div class="nav-cart-icon-wrap">
+        <i data-lucide="shopping-bag"></i>
+        <span class="nav-cart-badge" id="bottomNavCartCount">0</span>
+      </div>
+      <span>Box</span>
+    </button>
+  </nav>
+
+  <!-- Mobile Bottom Sheet Cart Drawer -->
+  <div class="bottom-sheet-overlay" id="cartOverlay"></div>
+  <aside class="bottom-sheet-drawer" id="cartDrawer" aria-label="Shopping Cart">
+    <div class="drawer-drag-pill"></div>
+    <div class="drawer-header">
+      <div class="dh-title">
+        <i data-lucide="shopping-bag"></i>
+        <h3>My Mithai Box</h3>
+        <span class="dh-count" id="cartItemCountDisplay">(0 items)</span>
+      </div>
+      <button class="drawer-close-btn" id="closeCartBtn"><i data-lucide="x"></i></button>
+    </div>
+
+    <!-- Free Delivery Progress Bar -->
+    <div class="delivery-perk-bar">
+      <div class="perk-text" id="perkText">Add <strong>₹499</strong> more for <strong>FREE Delivery</strong>!</div>
+      <div class="perk-progress-bg">
+        <div class="perk-progress-fill" id="perkProgressFill" style="width: 0%;"></div>
+      </div>
+    </div>
+
+    <!-- Cart Items Scroll List -->
+    <div class="drawer-cart-items" id="drawerCartItems">
+      <!-- Items dynamically populated -->
+    </div>
+
+    <!-- Empty State -->
+    <div class="drawer-empty-state" id="drawerEmptyState" style="display: none;">
+      <i data-lucide="shopping-bag" class="empty-icon"></i>
+      <h4>Your Mithai Box is Empty</h4>
+      <p>Explore our fresh desi ghee sweets and add your favorites!</p>
+      <button class="btn-pill" id="startBrowsingBtn">Explore Menu</button>
+    </div>
+
+    <!-- Drawer Footer & Checkout -->
+    <div class="drawer-footer" id="drawerFooter">
+      <!-- Coupon Section -->
+      <div class="coupon-pill-group">
+        <input type="text" id="couponCodeInput" placeholder="Promo code (try MITHAI10)" uppercase>
+        <button id="applyCouponBtn">Apply</button>
+      </div>
+      <div id="couponMessage" class="coupon-msg"></div>
+
+      <!-- Bill Breakdown -->
+      <div class="bill-breakdown">
+        <div class="bill-line">
+          <span>Item Total</span>
+          <span id="billSubtotal">₹0</span>
+        </div>
+        <div class="bill-line discount" id="billDiscountLine" style="display: none;">
+          <span>Festive Discount</span>
+          <span id="billDiscount">-₹0</span>
+        </div>
+        <div class="bill-line">
+          <span>Delivery Partner Fee</span>
+          <span id="billDelivery">₹50</span>
+        </div>
+        <div class="bill-line grand-total">
+          <strong>To Pay</strong>
+          <strong id="billGrandTotal">₹0</strong>
+        </div>
+      </div>
+
+      <!-- Order Actions -->
+      <div class="checkout-actions-col">
+        <button class="btn-whatsapp-order w-full" id="whatsAppCheckoutBtn">
+          <i data-lucide="message-circle"></i> Send Order on WhatsApp
+        </button>
+        <button class="btn-direct-order w-full" id="directCheckoutBtn">
+          <i data-lucide="truck"></i> Pay on Delivery (Cash/UPI)
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Direct Address Modal -->
+  <div class="modal-backdrop" id="addressModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3><i data-lucide="map-pin"></i> Enter Delivery Details</h3>
+        <button class="modal-close" id="closeAddressModal"><i data-lucide="x"></i></button>
+      </div>
+      <div class="modal-body">
+        <form id="orderForm" onsubmit="return handleOrderSubmit(event)">
+          <div class="form-field">
+            <label>Full Name *</label>
+            <input type="text" id="custName" required placeholder="e.g. Rahul Sharma">
+          </div>
+          <div class="form-field">
+            <label>Phone Number *</label>
+            <input type="tel" id="custPhone" required placeholder="e.g. 9811234567">
+          </div>
+          <div class="form-field">
+            <label>Complete Delivery Address *</label>
+            <textarea id="custAddress" required rows="2" placeholder="House/Flat No, Landmark, Sector..."></textarea>
+          </div>
+          <div class="form-field">
+            <label>Payment Method</label>
+            <div class="pay-options-row">
+              <label class="pay-opt-pill active">
+                <input type="radio" name="payType" value="Cash on Delivery" checked>
+                <span>💵 Cash on Delivery</span>
+              </label>
+              <label class="pay-opt-pill">
+                <input type="radio" name="payType" value="UPI on Delivery">
+                <span>📱 UPI on Delivery</span>
+              </label>
+            </div>
+          </div>
+          <button type="submit" class="btn-primary-app w-full mt-16">
+            <i data-lucide="check-circle-2"></i> Confirm Order
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Success Modal -->
+  <div class="modal-backdrop" id="successModal">
+    <div class="modal-dialog text-center p-24">
+      <div class="success-ring"><i data-lucide="check"></i></div>
+      <h3 class="mt-12">Order Placed Successfully!</h3>
+      <div class="order-tag" id="successOrderTag">#MMB-4921</div>
+      <p class="text-muted mt-8">Our master chefs are preparing your fresh sweets. Delivery in ~25-30 minutes.</p>
+      <button class="btn-primary-app w-full mt-20" id="successCloseBtn">Done</button>
+    </div>
+  </div>
+
+  <!-- Toast Notification Box -->
+  <div class="toast-box" id="toastBox"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
